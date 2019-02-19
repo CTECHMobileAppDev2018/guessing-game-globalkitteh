@@ -9,11 +9,14 @@ public class GuessingGame {
         int targetNum;
         int numTries = 0;
         int inputNum = 0;
+        boolean errorState = false;
         
         Random randInt = new Random();
         targetNum = (randInt.nextInt(99) + 1); // generates number 0-99, adds 1 for 1-100
         
         while (inputNum != targetNum) {
+          
+          errorState = false;
           
           System.out.println("Make your guess");
           Scanner input = new Scanner(System.in);
@@ -23,12 +26,13 @@ public class GuessingGame {
           }
           catch(RuntimeException e) {
             System.out.println("That's nogood!");
+            errorState = true;
           }
           
-          if(inputNum > 100 || inputNum < 1) {
+          if(errorState == false && (inputNum > 100 || inputNum < 1)) {
             System.out.println("That's nogood. 1-100 range");
           }
-          else if (inputNum < targetNum) {
+          else if (errorState == false && (inputNum < targetNum)) {
             System.out.println("Too low!");
           }
           else if (inputNum > targetNum) {
