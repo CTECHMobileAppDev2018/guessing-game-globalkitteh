@@ -19,7 +19,7 @@ public class GuessingGame {
           errorState = false;
           
           System.out.println("Make your guess");
-          Scanner input = new Scanner(System.in);
+          Scanner input = new Scanner(System.in); //creates user input scanner
           
           try {
             inputNum = Integer.parseInt(input.nextLine());
@@ -39,6 +39,7 @@ public class GuessingGame {
             System.out.println("Too high!");
           }
           numTries++;
+          input.close();
         }
         
         System.out.println("You got it with " + numTries + " tries!");
